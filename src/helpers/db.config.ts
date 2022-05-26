@@ -1,12 +1,19 @@
-const { Sequelize } = require("sequelize");
+import { Sequelize } from "sequelize/types";
 
-const sequelize = new Sequelize("postgres", "postgres", "password", {
-  host: "localhost",
-  dialect: "postgres",
-  define: {
-    timestamps: false,
-  } /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
-});
+const { Sequelize } = require("sequelize");
+const postgresURL = process.env.DATABASE_URL;
+let sequelize = new Sequelize();
+if (postgresURL != null) {
+  sequelize = new Sequelize(`${postgresURL}`);
+} else {
+  sequelize = new Sequelize("postgres", "postgres", "password", {
+    host: "localhost",
+    dialect: "postgres",
+    define: {
+      timestamps: false,
+    } /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
+  });
+}
 
 const init = async () => {
   try {

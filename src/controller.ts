@@ -4,7 +4,9 @@ const router = express.Router();
 const utils = require("./helpers/util");
 const _service = require("./services/service");
 const Redis = require("ioredis");
-const redis = new Redis();
+const redis_port = process.env.REDIS_PORT || 6379;
+const redis_host = process.env.REDIS_HOST || "localhost";
+const redis = new Redis(redis_port, redis_host);
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 
