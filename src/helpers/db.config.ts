@@ -1,5 +1,3 @@
-import { Sequelize } from "sequelize/types";
-
 const { Sequelize } = require("sequelize");
 const postgresURL = process.env.DATABASE_URL;
 let sequelize = new Sequelize();
