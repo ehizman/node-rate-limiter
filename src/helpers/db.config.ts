@@ -7,6 +7,7 @@ if (postgresURL != null) {
     host: `${databaseHost}`,
     dialect: "postgres",
     protocol: "postgres",
+    port: 5432,
     logging: true,
     define: {
       timestamps: false,
