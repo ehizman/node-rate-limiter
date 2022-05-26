@@ -17,11 +17,7 @@ async function authenticate(username: string, password: string) {
   }
 }
 
-async function findPhoneNumber(
-  req: Request,
-  next: NextFunction,
-  apiName: string
-) {
+async function findPhoneNumber(req: any, next: NextFunction, apiName: string) {
   const toParameter: string = req.body.to as string;
   const fromParameter: string = req.body.from as string;
   const username: string = req.account.dataValues.username as string;
@@ -34,7 +30,7 @@ async function findPhoneNumber(
   });
   if (apiName === "inbound") {
     const number = phoneBook.filter(
-      (p: PhoneNumberType) => p.dataValues.number === `${toParameter}`
+      (p: any) => p.dataValues.number === `${toParameter}`
     );
     if (number[0]) {
       return true;
@@ -43,7 +39,7 @@ async function findPhoneNumber(
     }
   } else if (apiName === "outbound") {
     const number = phoneBook.filter(
-      (p: PhoneNumberType) => p.dataValues.number === `${fromParameter}`
+      (p: any) => p.dataValues.number === `${fromParameter}`
     );
     if (number[0]) {
       return true;
