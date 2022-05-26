@@ -2,7 +2,17 @@ const { Sequelize } = require("sequelize");
 const postgresURL = process.env.DATABASE_URL;
 let sequelize = new Sequelize();
 if (postgresURL != null) {
-  sequelize = new Sequelize(`${postgresURL}`);
+  let databaseName = process.env.DATABASE_NAME;
+  let databaseUser = process.env.DATABASE_USERNAME;
+  let databasePassword = process.env.DATABASE_PASSWORD;
+  let databaseHost = process.env.DATABASE_HOST;
+  sequelize = new Sequelize(databaseName, databaseUser, databasePassword, {
+    host: `${databaseHost}`,
+    dialect: "postgres",
+    define: {
+      timestamps: false,
+    },
+  });
 } else {
   sequelize = new Sequelize("postgres", "postgres", "password", {
     host: "localhost",
