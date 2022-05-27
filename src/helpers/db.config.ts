@@ -1,27 +1,11 @@
 const { Sequelize } = require("sequelize");
-const postgresURL = process.env.DATABASE_URL;
-let sequelize = new Sequelize();
-if (postgresURL != null) {
-  let databaseHost = process.env.DATABASE_HOST;
-  sequelize = new Sequelize(`${postgresURL}`, {
-    host: `${databaseHost}`,
-    dialect: "postgres",
-    protocol: "postgres",
-    port: 5432,
-    logging: true,
-    define: {
-      timestamps: false,
-    },
-  });
-} else {
-  sequelize = new Sequelize("postgres", "postgres", "password", {
-    host: "localhost",
-    dialect: "postgres",
-    define: {
-      timestamps: false,
-    } /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
-  });
-}
+let sequelize = new Sequelize("postgres", "postgres", "password", {
+  host: "localhost",
+  dialect: "postgres",
+  define: {
+    timestamps: false,
+  } /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
+});
 
 const init = async () => {
   try {
