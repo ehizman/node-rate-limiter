@@ -33,7 +33,6 @@ async function inbound(req: Request, res: Response, next: NextFunction) {
         await redis.expire(redisKey, 4 * 60 * 60);
       }
     } else {
-      console.log("else block");
       next(isFound);
     }
     res.status(200);
@@ -67,8 +66,7 @@ async function outbound(req: Request, res: Response, next: NextFunction) {
     } else {
       let numberOfCalls = await redis.get(fromParameter);
       if (numberOfCalls != null) {
-        console.log("Number  of Calls --> ", numberOfCalls);
-        if (numberOfCalls > 5) {
+        if (numberOfCalls > 50) {
           res.status(400);
           res.json({
             messge: "",
