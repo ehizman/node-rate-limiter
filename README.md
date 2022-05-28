@@ -184,9 +184,9 @@ sequelize
 
 ## Authors
 
-👤 **toshmanuel**
+👤 **ehizman**
 
-- Github: [@ehizman](https://github.com/toshmanuel)
+- Github: [@ehizman](https://github.com/ehizman)
 
 ## Show your support
 
